@@ -11,7 +11,7 @@
     "publisher": "Elsevier",
     "repository": {
       "type": "git",
-      "url": "https://github.com/gerry-rohling/visualstructurizr"
+      "url": "https://github.com/elsevierlabs-os/VisualStructurizr"
     },
     "engines": {
       "vscode": "^1.84.0"
