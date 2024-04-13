@@ -14,6 +14,8 @@ import {
 } from 'vscode-languageclient/node';
 import { DrawioEditorProvider } from './DrawioEditor';
 import { StructurizrLexer, StructurizrParser, StructurizrInterpreter } from 'structurizr-parser' ;
+import { AbacusComponentProvider } from './providers/tree-data-providers/AbacusComponentProvider';
+import AbacusAuthenticationProvider from './providers/authentication-providers/AbacusAuthenticationProvider';
 
 let client: LanguageClient;
 
@@ -69,6 +71,20 @@ export function activate(context: vscode.ExtensionContext) {
 	);
 
 	context.subscriptions.push(DrawioEditorProvider.register(context));
+
+	context.subscriptions.push(
+		vscode.authentication.registerAuthenticationProvider(
+			AbacusAuthenticationProvider.id, 'Abacus Enterprise', new AbacusAuthenticationProvider(context.secrets)
+		)
+	);
+
+	const treeDataProvider = new AbacusComponentProvider();
+
+	context.subscriptions.push(
+		vscode.window.registerTreeDataProvider(
+			'architectureComponents', treeDataProvider
+		)
+	)
 
 	// Start the client. This will also launch the server
 	client.start();
