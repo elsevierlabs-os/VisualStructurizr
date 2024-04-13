@@ -2,14 +2,18 @@
 	"name": "lsp-sample-server",
 	"description": "Example implementation of a language server in node.",
 	"version": "1.0.0",
-	"author": "Microsoft Corporation",
+	"author": {
+		"name": "Gerry Rohling",
+		"email": "g.rohling@elsevier.com"
+	  },
 	"license": "MIT",
+	"publisher": "Elsevier",
 	"engines": {
 		"node": "*"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
+		"url": "https://github.com/elsevierlabs-os/VisualStructurizr"
 	},
 	"dependencies": {
 		"vscode-languageserver": "^8.1.0",
