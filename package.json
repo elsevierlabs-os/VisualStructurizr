@@ -97,59 +97,145 @@
                 "path": "./syntaxes/structurizr.tmLanguage.json"
             }
         ],
-        "configuration": {
-            "type": "object",
-            "title": "Visual Structurizr",
-            "properties": {
-                "abacus.host": {
-					"type": "string",
-					"default": "company.avolutionsoftware.com",
-					"description": "Abacus Server Hostname",
-					"order": 1
-				},
-				"abacus.port": {
-					"type": "number",
-					"default": 443,
-					"description": "Abacus Server default port",
-					"order": 2
-				},
-				"abacus.secure": {
-					"type": "boolean",
-					"default": true,
-					"description": "Verify SSL/TLS connection (recommended)",
-					"order": 3
-				},
-				"abacus.api": {
-					"type": "string",
-					"default": "/api",
-					"description": "Base URI for the Abacus REST API end point",
-					"order": 4
-				},
-				"abacus.eeid": {
-					"type": "number",
-					"default": 1001,
-					"description": "EEID of the architecture to be queried for applications",
-					"order": 5
-				},
-                "languageServer.maxNumberOfProblems": {
-                    "scope": "resource",
-                    "type": "number",
-                    "default": 100,
-                    "description": "Controls the maximum number of problems produced by the server."
-                },
-                "languageServer.trace.server": {
-                    "scope": "window",
-                    "type": "string",
-                    "enum": [
-                        "off",
-                        "messages",
-                        "verbose"
-                    ],
-                    "default": "off",
-                    "description": "Traces the communication between VS Code and the language server."
+        "configuration": [
+            {
+                "type": "object",
+                "title": "Abacus Repository API",
+                "properties": {
+                    "abacus.host": {
+                        "type": "string",
+                        "default": "company.avolutionsoftware.com",
+                        "description": "Abacus Server Hostname",
+                        "order": 1
+                    },
+                    "abacus.port": {
+                        "type": "number",
+                        "default": 443,
+                        "description": "Abacus Server default port",
+                        "order": 2
+                    },
+                    "abacus.secure": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "Verify SSL/TLS connection (recommended)",
+                        "order": 3
+                    },
+                    "abacus.api": {
+                        "type": "string",
+                        "default": "/api",
+                        "description": "Base URI for the Abacus REST API end point",
+                        "order": 4
+                    },
+                    "abacus.eeid": {
+                        "type": "number",
+                        "default": 1001,
+                        "description": "EEID of the architecture to be queried for applications",
+                        "order": 5
+                    }
+                }
+            },
+            {
+                "type": "object",
+                "title": "Abacus Repository Data Model",
+                "properties": {
+                    "abacus.c4Person.componentType": {
+                        "type": "string",
+                        "default": "Person",
+                        "description": "Component Type that represents C4 Person in Abacus",
+                        "order": 1
+                    },
+                    "abacus.c4Person.propertyName": {
+                        "type": "string",
+                        "default": "",
+                        "description": "Property Name that indicates C4 Type",
+                        "order": 2
+                    },
+                    "abacus.c4Person.propertyValue": {
+                        "type": "string",
+                        "default": "",
+                        "description": "Property Value that indicates C4 Type",
+                        "order": 3
+                    },
+                    "abacus.c4SoftwareSystem.componentType": {
+                        "type": "string",
+                        "default": "Software System",
+                        "description": "Component Type that represents C4 Software Systems in Abacus",
+                        "order": 4
+                    },
+                    "abacus.c4SoftwareSystem.propertyName": {
+                        "type": "string",
+                        "default": "",
+                        "description": "Property Name that indicates C4 Type",
+                        "order": 5
+                    },
+                    "abacus.c4SoftwareSystem.propertyValue": {
+                        "type": "string",
+                        "default": "",
+                        "description": "Property Value that indicates C4 Type",
+                        "order": 6
+                    },
+                    "abacus.c4Container.componentType": {
+                        "type": "string",
+                        "default": "Container",
+                        "description": "Component Type that represents C4 Containers in Abacus",
+                        "order": 7
+                    },
+                    "abacus.c4Container.propertyName": {
+                        "type": "string",
+                        "default": "",
+                        "description": "Property Name that indicates C4 Type",
+                        "order": 8
+                    },
+                    "abacus.c4Container.propertyValue": {
+                        "type": "string",
+                        "default": "",
+                        "description": "Property Value that indicates C4 Type",
+                        "order": 9
+                    },
+                    "abacus.c4Component.componentType": {
+                        "type": "string",
+                        "default": "Component",
+                        "description": "Component Type that represents C4 Components in Abacus",
+                        "order": 10
+                    },
+                    "abacus.c4Component.propertyName": {
+                        "type": "string",
+                        "default": "",
+                        "description": "Property Name that indicates C4 Type",
+                        "order": 11
+                    },
+                    "abacus.c4Component.propertyValue": {
+                        "type": "string",
+                        "default": "",
+                        "description": "Property Value that indicates C4 Type",
+                        "order": 12
+                    }
+                }
+            },
+            {
+                "type": "object",
+                "title": "Language Server",
+                "properties": {
+                    "languageServer.maxNumberOfProblems": {
+                        "scope": "resource",
+                        "type": "number",
+                        "default": 100,
+                        "description": "Controls the maximum number of problems produced by the server."
+                    },
+                    "languageServer.trace.server": {
+                        "scope": "window",
+                        "type": "string",
+                        "enum": [
+                            "off",
+                            "messages",
+                            "verbose"
+                        ],
+                        "default": "off",
+                        "description": "Traces the communication between VS Code and the language server."
+                    }
                 }
             }
-        }
+        ]
     },
     "scripts": {
         "vscode:prepublish": "npm run compile",
