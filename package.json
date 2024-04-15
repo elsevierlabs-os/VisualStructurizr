@@ -48,6 +48,14 @@
                     "light": "resources/light/drawio.svg",
                     "dark": "resources/dark/drawio.svg"
                 }
+            },
+            {
+                "command": "architectureComponents.refreshEntry",
+                "title": "Refresh",
+                "icon": {
+                    "light": "resources/light/refresh.svg",
+                    "dark": "resources/dark/refresh.svg"
+                }
             }
         ],
         "menus": {
@@ -56,6 +64,13 @@
                     "when": "editorLangId == structurizr",
                     "command": "visualstructurizr.createDrawIO",
                     "group": "navigation@1"
+                }
+            ],
+            "view/title": [
+                {
+                    "command": "architectureComponents.refreshEntry",
+                    "when": "view == architectureComponents",
+                    "group": "navigation"
                 }
             ]
         },

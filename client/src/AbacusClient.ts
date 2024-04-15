@@ -295,7 +295,7 @@ export class AbacusClient {
         //                                startsWith(tolower(Name), 'sales')
         //                      &$orderby=Name
         //                      &$count=true
-        //                      &$top=20
+        //                      &$top=200
         //                      &$select=EEID,Name,Description
 
         let client = this.getInstance();
@@ -309,10 +309,10 @@ export class AbacusClient {
         if (lowerFilter.length > 0) {
             queryString = queryString + ` and startsWith(tolower(Name), '${lowerFilter}')`;
         }
-        queryString = queryString + '&$orderby=Name&$count=true&$top=20&$select=EEID,Name,Description,ComponentTypeName';
-        // We use a zero based page structure so page 0 is the first 20 and page 1 is the next 20, etc
+        queryString = queryString + '&$orderby=Name&$count=true&$top=200&$select=EEID,Name,Description,ComponentTypeName';
+        // We use a zero based page structure so page 0 is the first 200 and page 1 is the next 200, etc
         if (page > 0) {
-            let skip = page * 20;
+            let skip = page * 200;
             queryString = queryString + `&$skip=${skip}`;
         }
 
@@ -392,11 +392,11 @@ export class AbacusClient {
         if (lowerFilter.length > 0) {
             queryString = queryString + ` and startsWith(tolower(Name), '${lowerFilter}')`;
         }
-        queryString = queryString + '&$orderby=Name&$count=true&$top=20&$select=EEID,Name,Description,ComponentTypeName';
+        queryString = queryString + '&$orderby=Name&$count=true&$top=200&$select=EEID,Name,Description,ComponentTypeName';
 
-        // We use a zero based page structure so page 0 is the first 20 and page 1 is the next 20, etc
+        // We use a zero based page structure so page 0 is the first 200 and page 1 is the next 200, etc
         if (page > 0) {
-            let skip = page * 20;
+            let skip = page * 200;
             queryString = queryString + `&$skip=${skip}`;
         }
 

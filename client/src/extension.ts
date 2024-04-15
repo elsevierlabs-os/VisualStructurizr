@@ -86,6 +86,12 @@ export function activate(context: vscode.ExtensionContext) {
 		)
 	)
 
+	context.subscriptions.push(
+		vscode.commands.registerCommand('architectureComponents.refreshEntry', () =>
+			treeDataProvider.refresh()
+	  	)
+	);
+
 	// Start the client. This will also launch the server
 	client.start();
 }

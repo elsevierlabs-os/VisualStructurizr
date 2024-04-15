@@ -50,7 +50,7 @@ export class AbacusComponentProvider implements vscode.TreeDataProvider<AbacusNo
                 else {
                     itemCount = 0;
                 }
-            } while (itemCount === 20);
+            } while (itemCount === 200);
             return Promise.resolve(items);
         }
 
@@ -69,7 +69,7 @@ export class AbacusComponentProvider implements vscode.TreeDataProvider<AbacusNo
             else {
                 itemCount = 0;
             }
-        } while (itemCount === 20);
+        } while (itemCount === 200);
         return Promise.resolve(items);
     }
 
@@ -144,6 +144,14 @@ export class AbacusComponentProvider implements vscode.TreeDataProvider<AbacusNo
             await fsclient.createFile(node.label + "-Deployment.drawio", drawIO.deployment);
         }
     } */
+
+    private _onDidChangeTreeData: vscode.EventEmitter<AbacusNode | undefined | null | void> = new vscode.EventEmitter<AbacusNode | undefined | null | void>();
+    readonly onDidChangeTreeData: vscode.Event<AbacusNode | undefined | null | void> = this._onDidChangeTreeData.event;
+  
+    refresh(): void {
+      this._onDidChangeTreeData.fire();
+    }
+
 }
 
 export class AbacusNode extends vscode.TreeItem {
