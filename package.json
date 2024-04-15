@@ -144,71 +144,95 @@
                         "description": "Component Type that represents C4 Person in Abacus",
                         "order": 1
                     },
+                    "abacus.c4Person.propertyType": {
+                        "type": "string",
+                        "default": "",
+                        "description": "Property Type that indicates C4 Type",
+                        "order": 2
+                    },
                     "abacus.c4Person.propertyName": {
                         "type": "string",
                         "default": "",
                         "description": "Property Name that indicates C4 Type",
-                        "order": 2
+                        "order": 3
                     },
                     "abacus.c4Person.propertyValue": {
                         "type": "string",
                         "default": "",
                         "description": "Property Value that indicates C4 Type",
-                        "order": 3
+                        "order": 4
                     },
                     "abacus.c4SoftwareSystem.componentType": {
                         "type": "string",
                         "default": "Software System",
                         "description": "Component Type that represents C4 Software Systems in Abacus",
-                        "order": 4
+                        "order": 5
+                    },
+                    "abacus.c4SoftwareSystem.propertyType": {
+                        "type": "string",
+                        "default": "",
+                        "description": "Property Type that indicates C4 Type",
+                        "order": 6
                     },
                     "abacus.c4SoftwareSystem.propertyName": {
                         "type": "string",
                         "default": "",
                         "description": "Property Name that indicates C4 Type",
-                        "order": 5
+                        "order": 7
                     },
                     "abacus.c4SoftwareSystem.propertyValue": {
                         "type": "string",
                         "default": "",
                         "description": "Property Value that indicates C4 Type",
-                        "order": 6
+                        "order": 8
                     },
                     "abacus.c4Container.componentType": {
                         "type": "string",
                         "default": "Container",
                         "description": "Component Type that represents C4 Containers in Abacus",
-                        "order": 7
+                        "order": 9
+                    },
+                    "abacus.c4Container.propertyType": {
+                        "type": "string",
+                        "default": "",
+                        "description": "Property Type that indicates C4 Type",
+                        "order": 10
                     },
                     "abacus.c4Container.propertyName": {
                         "type": "string",
                         "default": "",
                         "description": "Property Name that indicates C4 Type",
-                        "order": 8
+                        "order": 11
                     },
                     "abacus.c4Container.propertyValue": {
                         "type": "string",
                         "default": "",
                         "description": "Property Value that indicates C4 Type",
-                        "order": 9
+                        "order": 12
                     },
                     "abacus.c4Component.componentType": {
                         "type": "string",
                         "default": "Component",
                         "description": "Component Type that represents C4 Components in Abacus",
-                        "order": 10
+                        "order": 13
+                    },
+                    "abacus.c4Component.propertyType": {
+                        "type": "string",
+                        "default": "",
+                        "description": "Property Name that indicates C4 Type",
+                        "order": 14
                     },
                     "abacus.c4Component.propertyName": {
                         "type": "string",
                         "default": "",
                         "description": "Property Name that indicates C4 Type",
-                        "order": 11
+                        "order": 15
                     },
                     "abacus.c4Component.propertyValue": {
                         "type": "string",
                         "default": "",
                         "description": "Property Value that indicates C4 Type",
-                        "order": 12
+                        "order": 16
                     }
                 }
             },

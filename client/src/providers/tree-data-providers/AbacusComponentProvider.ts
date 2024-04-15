@@ -1,8 +1,9 @@
 import path = require('path');
-import { PlantUMLWriter } from 'structurizr-typescript';
+//import { PlantUMLWriter } from 'structurizr-typescript';
 import * as vscode from 'vscode';
 import { AbacusClient } from '../../AbacusClient';
-import { FsConsumer } from '../../FsConsumer';
+import { C4Level } from '../../c4level';
+//import { FsConsumer } from '../../FsConsumer';
 //import { StructurizrDslFormatter } from '../../formatters/StructurizrDslFormatter';
 //import { WorkspaceFactory } from '../../WorkspaceFactory';
 //import { C4PlantUMLFormatter } from '../../formatters/C4PlantUMLFormatter';
@@ -21,24 +22,22 @@ export class AbacusComponentProvider implements vscode.TreeDataProvider<AbacusNo
 
         let items: AbacusNode[] = [];
         let componentTypeName = '';
-        let childC4Level = '';
+        let childC4Level:C4Level = null;
         let page = 0;
         let itemCount = 0;
 
         // Section if there is a parent element
         if (element) {
             switch (element.c4level){
-                case 'c4SoftwareSystem':
-                    componentTypeName = vscode.workspace.getConfiguration('abacus').get<string>('c4Container','Container');
-                    childC4Level = 'c4Container';
+                case C4Level.SOFTWARESYSTEM:
+                    childC4Level = C4Level.CONTAINER;
                     break;
-                case 'c4Container':
-                    componentTypeName = vscode.workspace.getConfiguration('abacus').get<string>('c4Component','Component');
-                    childC4Level = 'c4Component';
+                case C4Level.CONTAINER:
+                    childC4Level = C4Level.COMPONENT;
                     break;
             }
             do {
-                let childDS = await AbacusClient.getChildren(element.eeid, componentTypeName, "", 0);
+                let childDS = await AbacusClient.getChildren(element.eeid, childC4Level, "", 0);
                 if (childDS) {
                     itemCount = childDS.value.length;
                     for (var item of childDS.value) {
@@ -56,13 +55,12 @@ export class AbacusComponentProvider implements vscode.TreeDataProvider<AbacusNo
         }
 
         // Section if there is no parent element so this is the root
-        componentTypeName = vscode.workspace.getConfiguration('abacus').get<string>('c4SoftwareSystem', 'Software System');
         do {
-            let abacusDS = await AbacusClient.getSystemsDataset(componentTypeName, "", page);
+            let abacusDS = await AbacusClient.getSystemsDataset(C4Level.SOFTWARESYSTEM, "", page);
             if (abacusDS) {
                 itemCount = abacusDS.value.length;
                 for (var item of abacusDS.value) {
-                    let newItem = new AbacusNode(item.Name, item.EEID.toString(), 'c4SoftwareSystem', vscode.TreeItemCollapsibleState.Collapsed);
+                    let newItem = new AbacusNode(item.Name, item.EEID.toString(), C4Level.SOFTWARESYSTEM, vscode.TreeItemCollapsibleState.Collapsed);
                     newItem.tooltip = item.Description;
                     items.push(newItem);
                 }
@@ -153,7 +151,7 @@ export class AbacusNode extends vscode.TreeItem {
     constructor(
         public readonly label: string,
         public eeid: string,
-        public c4level: string,
+        public c4level: C4Level,
         public readonly collabsibleState: vscode.TreeItemCollapsibleState
     ) {
         super(label, collabsibleState);
@@ -162,19 +160,19 @@ export class AbacusNode extends vscode.TreeItem {
         this.contextValue = c4level;
         
         switch(c4level){
-            case 'c4SoftwareSystem':
+            case C4Level.SOFTWARESYSTEM:
                 this.iconPath = {
                     light: path.join(__filename, '..', '..', '..', '..', '..', 'resources', 'c4', 'light', 'softwaresystem.svg'),
                     dark: path.join(__filename, '..', '..', '..', '..', '..', 'resources', 'c4', 'dark', 'softwaresystem.svg')
                 };
                 break;
-            case 'c4Container':
+            case C4Level.CONTAINER:
                 this.iconPath = {
                     light: path.join(__filename, '..', '..', '..', '..', '..', 'resources', 'c4', 'light', 'container.svg'),
                     dark: path.join(__filename, '..', '..', '..', '..', '..', 'resources', 'c4', 'dark', 'container.svg')
                 };
                 break;
-            case 'c4Component':
+            case C4Level.COMPONENT:
                 this.iconPath = {
                     light: path.join(__filename, '..', '..', '..', '..', '..', 'resources', 'c4', 'light', 'component.svg'),
                     dark: path.join(__filename, '..', '..', '..', '..', '..', 'resources', 'c4', 'dark', 'component.svg')
