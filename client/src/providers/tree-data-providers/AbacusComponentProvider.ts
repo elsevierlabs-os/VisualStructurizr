@@ -159,11 +159,12 @@ export class AbacusComponentProvider implements vscode.TreeDataProvider<AbacusNo
       this._onDidChangeTreeData.fire();
     }
 
-    handleDrag?(source: readonly AbacusNode[], dataTransfer: vscode.DataTransfer, token: vscode.CancellationToken): void | Thenable<void> {
+    public async handleDrag(source: readonly AbacusNode[], dataTransfer: vscode.DataTransfer, token: vscode.CancellationToken): Promise<void> {
         console.log('DRAG INITIATED FROM ARCHITECTURE TREE VIEW');
         dataTransfer.set('application/vnd.code.tree.architectureComponents', new vscode.DataTransferItem(source));
     }
-    handleDrop?(target: AbacusNode, dataTransfer: vscode.DataTransfer, token: vscode.CancellationToken): void | Thenable<void> {
+    public async handleDrop(target: AbacusNode, dataTransfer: vscode.DataTransfer, token: vscode.CancellationToken): Promise<void> {
+        console.log('DROP INITIATED ON ARCHITECTURE TREE VIEW');
         throw new Error('Method not implemented.');
     }
 
