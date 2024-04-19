@@ -103,7 +103,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	context.subscriptions.push(
 		vscode.languages.registerDocumentDropEditProvider({ scheme: 'file', language: 'structurizr' }, new StructurizrDropProvider())
-	)
+	);
 
 	// Start the client. This will also launch the server
 	client.start();
