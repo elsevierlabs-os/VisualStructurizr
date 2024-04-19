@@ -9,7 +9,13 @@ import { C4Level } from '../../c4level';
 //import { C4PlantUMLFormatter } from '../../formatters/C4PlantUMLFormatter';
 //import { DrawIOFormatter } from '../../formatters/DrawIOFormatter';
 
-export class AbacusComponentProvider implements vscode.TreeDataProvider<AbacusNode> {
+export class AbacusComponentProvider implements vscode.TreeDataProvider<AbacusNode>, vscode.TreeDragAndDropController<AbacusNode> {
+
+    // dropMimeTypes: readonly string[];
+    // dragMimeTypes: readonly string[];
+
+    dropMimeTypes = ['application/vnd.code.tree.architectureComponents', 'text/uri-list'];
+	dragMimeTypes = ['application/vnd.code.tree.architectureComponents'];
 
     // Pass in context or something if required, for now we need nothing about the workspace
     constructor(){}
@@ -149,7 +155,16 @@ export class AbacusComponentProvider implements vscode.TreeDataProvider<AbacusNo
     readonly onDidChangeTreeData: vscode.Event<AbacusNode | undefined | null | void> = this._onDidChangeTreeData.event;
   
     refresh(): void {
+        console.log('Refresh of architecture tree view requested.');
       this._onDidChangeTreeData.fire();
+    }
+
+    handleDrag?(source: readonly AbacusNode[], dataTransfer: vscode.DataTransfer, token: vscode.CancellationToken): void | Thenable<void> {
+        console.log('DRAG INITIATED FROM ARCHITECTURE TREE VIEW');
+        dataTransfer.set('application/vnd.code.tree.architectureComponents', new vscode.DataTransferItem(source));
+    }
+    handleDrop?(target: AbacusNode, dataTransfer: vscode.DataTransfer, token: vscode.CancellationToken): void | Thenable<void> {
+        throw new Error('Method not implemented.');
     }
 
 }

@@ -14,7 +14,7 @@
         "url": "https://github.com/elsevierlabs-os/VisualStructurizr"
     },
     "engines": {
-        "vscode": "^1.84.0"
+        "vscode": "^1.88.0"
     },
     "categories": [
         "Programming Languages"
@@ -26,7 +26,7 @@
         "architecture"
     ],
     "activationEvents": [],
-    "main": "./client/out/extension",
+    "main": "./client/out/extension.js",
     "contributes": {
         "customEditors": [
             {

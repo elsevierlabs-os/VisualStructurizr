@@ -13,9 +13,10 @@ import {
 	TransportKind
 } from 'vscode-languageclient/node';
 import { DrawioEditorProvider } from './DrawioEditor';
-import { StructurizrLexer, StructurizrParser, StructurizrInterpreter } from 'structurizr-parser' ;
+import { StructurizrLexer, StructurizrParser, StructurizrInterpreter, ContainerInstance } from 'structurizr-parser' ;
 import { AbacusComponentProvider } from './providers/tree-data-providers/AbacusComponentProvider';
 import AbacusAuthenticationProvider from './providers/authentication-providers/AbacusAuthenticationProvider';
+import { StructurizrDropProvider } from './providers/drag-drop-providers/StructurizrDropProvider';
 
 let client: LanguageClient;
 
@@ -81,16 +82,26 @@ export function activate(context: vscode.ExtensionContext) {
 	const treeDataProvider = new AbacusComponentProvider();
 
 	context.subscriptions.push(
-		vscode.window.registerTreeDataProvider(
-			'architectureComponents', treeDataProvider
-		)
-	)
+		vscode.window.createTreeView(
+			'architectureComponents', 
+			{treeDataProvider: treeDataProvider, showCollapseAll: true, canSelectMany: false, dragAndDropController: treeDataProvider})
+	);
+	
+	// context.subscriptions.push(
+	// 	vscode.window.registerTreeDataProvider(
+	// 		'architectureComponents', treeDataProvider
+	// 	)
+	// )
 
 	context.subscriptions.push(
 		vscode.commands.registerCommand('architectureComponents.refreshEntry', () =>
 			treeDataProvider.refresh()
 	  	)
 	);
+
+	context.subscriptions.push(
+		vscode.languages.registerDocumentDropEditProvider({ scheme: 'file', language: 'structurizr' }, new StructurizrDropProvider())
+	)
 
 	// Start the client. This will also launch the server
 	client.start();
