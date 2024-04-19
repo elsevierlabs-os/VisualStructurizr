@@ -17,6 +17,7 @@ import { StructurizrLexer, StructurizrParser, StructurizrInterpreter, ContainerI
 import { AbacusComponentProvider } from './providers/tree-data-providers/AbacusComponentProvider';
 import AbacusAuthenticationProvider from './providers/authentication-providers/AbacusAuthenticationProvider';
 import { StructurizrDropProvider } from './providers/drag-drop-providers/StructurizrDropProvider';
+import { ArchitectureComponentDragProvider } from './providers/drag-drop-providers/ArchitectureComponentDragProvider';
 
 let client: LanguageClient;
 
@@ -80,11 +81,12 @@ export function activate(context: vscode.ExtensionContext) {
 	);
 
 	const treeDataProvider = new AbacusComponentProvider();
+	const treeDragDropProvider = new ArchitectureComponentDragProvider();
 
 	context.subscriptions.push(
 		vscode.window.createTreeView(
 			'architectureComponents', 
-			{treeDataProvider: treeDataProvider, showCollapseAll: true, canSelectMany: false, dragAndDropController: treeDataProvider})
+			{treeDataProvider: treeDataProvider, showCollapseAll: true, canSelectMany: false, dragAndDropController: treeDragDropProvider})
 	);
 	
 	// context.subscriptions.push(
