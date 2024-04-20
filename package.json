@@ -295,7 +295,7 @@
     },
     "dependencies": {
         "glob": "^10.3.10",
-        "structurizr-parser": "^0.1.3",
+        "structurizr-parser": "^0.2.4",
         "typed-rest-client": "^1.8.11",
         "uuid": "^9.0.1"
     }

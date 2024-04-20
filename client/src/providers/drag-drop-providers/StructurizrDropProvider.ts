@@ -14,7 +14,7 @@ export class StructurizrDropProvider implements DocumentDropEditProvider {
             return undefined;
         }
         const dropFilePath = document.uri.fsPath;
-        const dragEntity = JSON.parse(dataTransferItem.value);
+        const dragEntity = JSON.parse(dataTransferItem.value) as AbacusNode[];
         console.log('File: ' + dragEntity);
         const snippet = new SnippetString();
         snippet.appendText(dragEntity[0].eeid);

@@ -13,11 +13,11 @@ import {
 	TransportKind
 } from 'vscode-languageclient/node';
 import { DrawioEditorProvider } from './DrawioEditor';
-import { StructurizrLexer, StructurizrParser, StructurizrInterpreter, ContainerInstance } from 'structurizr-parser' ;
 import { AbacusComponentProvider } from './providers/tree-data-providers/AbacusComponentProvider';
 import AbacusAuthenticationProvider from './providers/authentication-providers/AbacusAuthenticationProvider';
 import { StructurizrDropProvider } from './providers/drag-drop-providers/StructurizrDropProvider';
 import { ArchitectureComponentDragProvider } from './providers/drag-drop-providers/ArchitectureComponentDragProvider';
+import { C4Compiler } from './C4Compiler';
 
 let client: LanguageClient;
 
@@ -63,12 +63,8 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.commands.registerCommand('visualstructurizr.createDrawIO', async (uri: vscode.Uri) => {
 			// Here we need to call the drawio compiler to generate the drawio files.
 			console.log(`Please execute the Create DrawIO for ${uri} command here.`);
-			const readData = await vscode.workspace.fs.readFile(uri);
-			const readStr = Buffer.from(readData).toString('utf8');
-			console.log(readStr);
-			let lexingResult = StructurizrLexer.tokenize(readStr);
-			StructurizrParser.input = lexingResult.tokens;
-			const cst = StructurizrParser.workspaceWrapper();
+			const compiler = new C4Compiler();
+			const result = await compiler.process(uri);
 		})
 	);
 

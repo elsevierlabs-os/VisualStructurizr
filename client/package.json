@@ -16,6 +16,7 @@
 		"vscode": "^1.88.0"
 	},
 	"dependencies": {
+		"mxbuilder": "^0.1.6",
 		"vscode-languageclient": "^8.1.0"
 	},
 	"devDependencies": {
