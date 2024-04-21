@@ -76,7 +76,7 @@ export class C4Compiler {
         const dwg = await mx.toDiagram();
         const writeData = Buffer.from(dwg, 'utf8');
         const rootSystem = view.SystemId;
-        const targetFile = posix.join(this.dslDirname, this.dslFilename, "-", rootSystem, "-Context.drawio");
+        const targetFile = posix.join(this.dslDirname, this.dslFilename + "-" + rootSystem + "-Context.drawio");
         const targetUri = vscode.Uri.file(targetFile);
         await vscode.workspace.fs.writeFile(targetUri, writeData);
         await vscode.commands.executeCommand("vscode.open", targetUri);
