@@ -66,6 +66,7 @@ export class C4Compiler {
         return true;
     }
 
+    // SYSTEM LANDSCAPE WOULD BE A DUMP OF EVERYTHING THAT IS IN THE STRUCTURIZR FILE
     async createSystemLandscapeView(view: C4SystemLandscapeView, c4workspace: C4Workspace) {
         var mx = new MxBuilder();
         const dwg = mx.toDiagram();
@@ -143,15 +144,15 @@ export class C4Compiler {
             }
         });
         c4workspace.Model.Groups.forEach(g => {
-            mx.placeGroupBoundary(g.Name, "", g.Id);
+            let groupId = mx.placeGroupBoundary(g.Name, "", g.Id);
             g.People.forEach(p => {
                 if (entityList.includes(p)) {
-                    mx.placePerson(p.Name, p.Description, p.Id, g.Id);
+                    mx.placePerson(p.Name, p.Description, p.Id, groupId);
                 }
             });
             g.SoftwareSystems.forEach(ss => {
                 if (entityList.includes(ss)) {
-                    mx.placeSoftwareSystem(ss.Name, ss.Description, ss.Id, g.Id);
+                    mx.placeSoftwareSystem(ss.Name, ss.Description, ss.Id, groupId);
                 }
             });
         });
