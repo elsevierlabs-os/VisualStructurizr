@@ -24,7 +24,7 @@ export class StructurizrDropProvider implements DocumentDropEditProvider {
         snippet.appendText(dragEntity[0].label);
         snippet.appendText(' ');
         const cleanedDescription = this.removeLineBreaks(dragEntity[0].tooltip as string);
-        snippet.appendText(cleanedDescription);
+        snippet.appendText('"' + cleanedDescription + '"');
         return new DocumentDropEdit(snippet);
     }
 
