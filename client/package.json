@@ -16,11 +16,11 @@
 		"vscode": "^1.88.0"
 	},
 	"dependencies": {
-		"mxbuilder": "^0.2.0",
+		"mxbuilder": "^0.2.2",
 		"vscode-languageclient": "^8.1.0"
 	},
 	"devDependencies": {
-		"@types/vscode": "^1.88.0",
-		"@vscode/test-electron": "^2.2.3"
+		"@types/vscode": "^1.89.0",
+		"@vscode/test-electron": "^2.3.9"
 	}
 }
