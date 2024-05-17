@@ -286,7 +286,7 @@
     },
     "devDependencies": {
         "@types/mocha": "^9.1.1",
-        "@types/node": "^16.18.96",
+        "@types/node": "^16.18.97",
         "@typescript-eslint/eslint-plugin": "^6.21.0",
         "@typescript-eslint/parser": "^6.21.0",
         "eslint": "^8.57.0",
@@ -294,8 +294,8 @@
         "typescript": "^5.4.5"
     },
     "dependencies": {
-        "glob": "^10.3.12",
-        "structurizr-parser": "^0.2.12",
+        "glob": "^10.3.15",
+        "structurizr-parser": "^0.2.13",
         "typed-rest-client": "^1.8.11",
         "uuid": "^9.0.1"
     }

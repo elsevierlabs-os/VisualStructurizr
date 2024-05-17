@@ -66,8 +66,14 @@ export class C4Compiler {
         return true;
     }
 
-    // SYSTEM LANDSCAPE WOULD BE A DUMP OF EVERYTHING THAT IS IN THE STRUCTURIZR FILE
+    // SYSTEM LANDSCAPE WOULD BE A DUMP OF EVERYTHING PERSON AND SOFTWARE SYSTEM THAT IS IN THE STRUCTURIZR FILE
     async createSystemLandscapeView(view: C4SystemLandscapeView, c4workspace: C4Workspace) {
+        // We need to build a list of linked entities
+        const entityList: C4Element[] = [];
+        const relationshipList: ViewRelationship[] = [];
+        // We then add all people
+        // We add all software systems
+        // We find all relationships between people/software systems
         var mx = new MxBuilder();
         const dwg = mx.toDiagram();
         throw new Error('Method not implemented.');
