@@ -25,11 +25,13 @@ export class C4Compiler {
         StructurizrParser.input = lexingResult.tokens;
         const cst = StructurizrParser.workspaceWrapper();
         if (StructurizrParser.errors.length > 0) {
+            vscode.window.showErrorMessage("There are errors in the source file, please correct and try again");
             return false;
         }
         try {
             const c4workspace = C4Interpreter.visit(cst) as C4Workspace;
             if (!c4workspace) {
+                vscode.window.showErrorMessage("Unable to find a workspace to process.");
                 return false;
             }
 
